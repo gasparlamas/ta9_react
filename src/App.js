@@ -1,23 +1,32 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useState, useEffect } from "react";
 
 function App() {
+
+const [valor, setValor] = useState(0);
+
+useEffect(() => {
+  document.title = `Contador: ${valor}`;
+}, [valor]);
+
+const sumar = () =>{
+  setValor(valor+1);
+}
+
+const restar = () =>{
+  if (valor>0){
+    setValor(valor-1);
+  }
+  
+}
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Contador</h1>
+      <h2>{valor}</h2>
+      <button onClick={sumar}>Aumentar</button>
+      <button onClick={restar}>Decrementar</button>
     </div>
   );
 }
